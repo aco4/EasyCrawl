@@ -8,4 +8,4 @@ A Minecraft datapack that allows you to crawl anywhere, anytime.
 - To toggle crawling on/off for yourself, type /trigger toggleCrawl
 
 ![Player crawling](https://static.planetminecraft.com/files/resource_media/screenshot/14710513.png)
-![Player crawling in double tall grass](https://static.planetminecraft.com/files/resource_media/screenshot/15074209.png)
+![Player Steve going from a sneaking state into a crawling state, captioned "Crawl Without Trapdoors!"](https://static.planetminecraft.com/files/resource_media/screenshot/15899600-easycrawl-thumbnail.png)
