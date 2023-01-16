@@ -2,7 +2,7 @@
 execute as @a run function ezcrawl:zz_private/settings/main
 
 # Crawl-start sequence
-execute as @a[predicate=ezcrawl:can_start_crawling] at @s positioned ~ ~0.825 ~ at @s run function ezcrawl:zz_private/crawl/start/check_start_angle
+execute as @a[predicate=ezcrawl:can_start_crawling] at @s run function ezcrawl:zz_private/crawl/start/check_start_angle
 
 
 
