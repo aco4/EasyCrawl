@@ -1,20 +1,20 @@
-scoreboard objectives remove ezcrawl.main
+scoreboard objectives remove ezc.main
 
-scoreboard objectives remove ezcrawl.crawlID
+scoreboard objectives remove ezc.crawlID
 
-scoreboard objectives remove ezcrawl.crawling
-scoreboard objectives remove ezcrawl.active
+scoreboard objectives remove ezc.crawling
+scoreboard objectives remove ezc.active
 
-scoreboard objectives remove ezcrawl.settings.start_angle
-scoreboard objectives remove ezcrawl.settings.stop_angle
-scoreboard objectives remove ezcrawl.settings.movement
+scoreboard objectives remove ezc.s.start
+scoreboard objectives remove ezc.s.stop
+scoreboard objectives remove ezc.s.move
 
 scoreboard objectives remove toggleCrawl
-scoreboard objectives remove customizeCrawlAngles
-scoreboard objectives remove setCrawlStartAngle
-scoreboard objectives remove setCrawlStopAngle
+scoreboard objectives remove customizeAngles
+scoreboard objectives remove setStartAngle
+scoreboard objectives remove setStopAngle
 
-scoreboard objectives remove ezcrawl.info_page
+scoreboard objectives remove ezc.info_page
 
 kill @e[tag=ezcrawl.crawl_entity]
 

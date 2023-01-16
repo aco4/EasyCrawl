@@ -1,2 +1,2 @@
-scoreboard players operation @s ezcrawl.crawlID = #ezcrawl.newID ezcrawl.crawlID
+scoreboard players operation @s ezc.crawlID = #ezcrawl.newID ezc.crawlID
 tag @s remove ezcrawl.noID

@@ -6,24 +6,24 @@
 
 
 
-scoreboard players add @s ezcrawl.crawling 1
+scoreboard players add @s ezc.crawling 1
 
 
 
 # Try to move to the player
 # Must be in same dimension to move to player (distance=0..)
 # If unsuccessful (not in same dimension), stop crawling
-execute store success score #ezcrawl.success ezcrawl.crawling as @e[type=area_effect_cloud,tag=ezcrawl.vehicle,distance=0..] if score @s ezcrawl.crawlID = @p ezcrawl.crawlID run function ezcrawl:zz_private/crawl/move_to_player
-execute if score #ezcrawl.success ezcrawl.crawling matches 0 run function ezcrawl:zz_private/crawl/stop
+execute store success score #ezcrawl.success ezc.crawling as @e[type=area_effect_cloud,tag=ezcrawl.vehicle,distance=0..] if score @s ezc.crawlID = @p ezc.crawlID run function ezcrawl:zz_private/crawl/move_to_player
+execute if score #ezcrawl.success ezc.crawling matches 0 run function ezcrawl:zz_private/crawl/stop
 
 
 
 ### Check stop angle
 # Get pitch
-execute store result score #ezcrawl.player_pitch ezcrawl.crawling run data get entity @s Rotation[1]
+execute store result score #ezcrawl.player_pitch ezc.crawling run data get entity @s Rotation[1]
 
 # Test if in range
-execute if score #ezcrawl.player_pitch ezcrawl.crawling < @s ezcrawl.settings.stop_angle run function ezcrawl:zz_private/crawl/stop
+execute if score #ezcrawl.player_pitch ezc.crawling < @s ezc.s.stop run function ezcrawl:zz_private/crawl/stop
 
 
 
