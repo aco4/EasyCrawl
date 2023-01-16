@@ -3,8 +3,8 @@
   "entity": "this",
   "predicate": {
     "vehicle": {
-      "type": "minecraft:armor_stand",
-      "nbt": "{Tags:[\"ezcrawl.armor_stand\"]}"
+      "type": "minecraft:area_effect_cloud",
+      "nbt": "{Tags:[\"ezcrawl.vehicle\"]}"
     }
   }
 }
