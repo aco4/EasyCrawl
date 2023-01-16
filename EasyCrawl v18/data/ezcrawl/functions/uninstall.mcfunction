@@ -1,10 +1,12 @@
+scoreboard objectives remove ezcrawl.main
+
 scoreboard objectives remove ezcrawl.crawlID
+
 scoreboard objectives remove ezcrawl.crawling
 scoreboard objectives remove ezcrawl.active
 
 scoreboard objectives remove ezcrawl.settings.start_angle
 scoreboard objectives remove ezcrawl.settings.stop_angle
-
 scoreboard objectives remove ezcrawl.settings.movement
 
 scoreboard objectives remove toggleCrawl
