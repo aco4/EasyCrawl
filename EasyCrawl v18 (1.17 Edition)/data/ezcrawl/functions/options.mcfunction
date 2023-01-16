@@ -1,1 +1,1 @@
-scoreboard players set @s ezcrawl.info_page 2
+scoreboard players set @s ezc.info_page 2

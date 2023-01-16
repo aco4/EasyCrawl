@@ -1,7 +1,7 @@
 function ezcrawl:zz_private/info_page/clear
 
 # If displaying info page from the menu, display back button
-execute if score @s ezcrawl.info_page matches 100.. run tellraw @s {"text":"< Back","bold":true,"hoverEvent":{"action":"show_text","contents":[{"text":"/function ezcrawl:menu"}]},"clickEvent":{"action":"run_command","value":"/function ezcrawl:menu"}}
+execute if score @s ezc.info_page matches 100.. run tellraw @s {"text":"< Back","bold":true,"hoverEvent":{"action":"show_text","contents":[{"text":"/function ezcrawl:menu"}]},"clickEvent":{"action":"run_command","value":"/function ezcrawl:menu"}}
 
 
 
@@ -19,4 +19,4 @@ tellraw @s ""
 
 
 
-scoreboard players reset @s ezcrawl.info_page
+scoreboard players reset @s ezc.info_page
