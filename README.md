@@ -3,13 +3,13 @@ This is a Minecraft datapack that lets you crawl anytime, anywhere! Just look do
 
 ## Files
 
-Name                                          |Version
-:---------------------------------------------|:------
-[EasyCrawl v18                 ](example.com) |1.20
-[EasyCrawl v18 (1.19.4 Edition)](example.com) |1.19.4
-[EasyCrawl v17                 ](example.com) |1.19.4
-[EasyCrawl v17 (1.18 Edition)  ](example.com) |1.18.2
-[EasyCrawl v17 (1.17 Edition)  ](example.com) |1.17.1
+Name                           |Version|Download
+:------------------------------|:------|:--------------:
+EasyCrawl v18                  |1.20   |[⤓](example.com)
+EasyCrawl v18 (1.19.4 Edition) |1.19.4 |[⤓](example.com)
+EasyCrawl v17                  |1.19.4 |[⤓](example.com)
+EasyCrawl v17 (1.18 Edition)   |1.18.2 |[⤓](example.com)
+EasyCrawl v17 (1.17 Edition)   |1.17.1 |[⤓](example.com)
 
 ## Planet Minecraft
 Before coming to GitHub, EasyCrawl lived on the creative fansite, Planet Minecraft. You can find it at https://www.planetminecraft.com/data-pack/crawling-datapack/
