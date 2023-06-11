@@ -1,9 +1,15 @@
 # EasyCrawl
-This is a Minecraft datapack that allows you to crawl anytime, anywhere!
+This is a Minecraft datapack that lets you crawl anytime, anywhere! Just look down and sneak to start crawling, and press space to stand back up!
 
-Just look down and sneak to start crawling, and press space to stand back up!
+## Files
 
-This datapack works with Minecraft versions 1.17.0 to 1.19.3
+Name                                          |Version
+:---------------------------------------------|:------
+[EasyCrawl v18                 ](example.com) |1.20
+[EasyCrawl v18 (1.19.4 Edition)](example.com) |1.19.4
+[EasyCrawl v17                 ](example.com) |1.19.4
+[EasyCrawl v17 (1.18 Edition)  ](example.com) |1.18.2
+[EasyCrawl v17 (1.17 Edition)  ](example.com) |1.17.1
 
 ## Planet Minecraft
 Before coming to GitHub, EasyCrawl lived on the creative fansite, Planet Minecraft. You can find it at https://www.planetminecraft.com/data-pack/crawling-datapack/
