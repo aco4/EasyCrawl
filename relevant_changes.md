@@ -13,7 +13,7 @@ This file logs all changes to Minecraft that affect EasyCrawl
 - Datapack format: 12
 - Resourcepack format: 13
 - (Not relevant but worth noting) Effect duration can now be infinite. e.g. summon shulker ~ ~ ~ {ActiveEffects:[{Id:14,Amplifier:0b,Duration:-1}]}
-- Only mobs in the dismounts_underwater entity tag will now force the rider to dismount when underwater. This does not include area_effect_clouds. Allows us to remove the in_fluid requirement
+- Only mobs in the dismounts_underwater entity tag will now force the rider to dismount when underwater. This does not include area_effect_clouds. Allows removal of the in_fluid requirement
 
 
 
