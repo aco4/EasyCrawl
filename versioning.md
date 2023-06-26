@@ -1,19 +1,18 @@
 # EasyCrawl Versioning
+
 EasyCrawl's versioning system makes three adaptations upon the official [Semantic Versioning Specification](https://semver.org/):
 
-**1. Add Minecraft version**
-
+**1. Add Minecraft version**<br>
 To identify the Minecraft version the datapack was made for
 
-**2. Add `v` to version number**
-
+**2. Add `v` to version number**<br>
 To help distinguish the Minecraft version from the datapack version.
 
-**3. Introduce `bpt` keyword**
-
+**3. Introduce `bpt` keyword**<br>
 To indicate backwards-support versions
 
 ## General Format
+
 `MCVERSION-vMAJOR.MINOR.PATCH`
 
 - `MCVERSION` = The Minecraft version the datapack was made for
