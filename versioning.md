@@ -2,12 +2,15 @@
 EasyCrawl's versioning system makes three adaptations upon the official [Semantic Versioning Specification](https://semver.org/):
 
 **1. Add Minecraft version**
+
 To identify the Minecraft version the datapack was made for
 
 **2. Add `v` to version number**
+
 To help distinguish the Minecraft version from the datapack version.
 
 **3. Introduce `bpt` keyword**
+
 To indicate backwards-support versions
 
 ## General Format
