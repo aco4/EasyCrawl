@@ -1,11 +1,24 @@
 # Relevant Changes
 This file logs all changes to Minecraft that affect EasyCrawl
 
+## 1.20.2
+- Datapack format: 16
+- Resourcepack format: 16
+- Added overlays (multi-version packs)
+
+
+
+## 1.20.1
+- Nothing
+
+
+
 ## 1.20
 - Datapack format: 15
 - Resourcepack format: 15
 - (Not relevant but worth noting) Renamed the alternative condition to any_of
 - (Not relevant but worth noting) Added the all_of condition. It has a field terms and passes only if all the terms pass
+- Added /return command
 
 
 
