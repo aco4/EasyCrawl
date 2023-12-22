@@ -1,10 +1,25 @@
+
 # Relevant Changes
 This file logs all changes to Minecraft that affect EasyCrawl
 
+## 1.20.4
+- Nothing
+
+
+
+## 1.20.3
+- Datapack format: 26
+- Resourcepack format: 22
+- (Not relevant but worth noting) Added `/return run`
+- (Not relevant but worth noting) `/function` command no longer has a result unless it uses `/return`
+
+
+
 ## 1.20.2
-- Datapack format: 16
-- Resourcepack format: 16
-- Added overlays (multi-version packs)
+- Datapack format: 18
+- Resourcepack format: 18
+- Added overlays and supported_formats to `pack.mcmeta`
+- Added macros
 
 
 
@@ -16,17 +31,17 @@ This file logs all changes to Minecraft that affect EasyCrawl
 ## 1.20
 - Datapack format: 15
 - Resourcepack format: 15
-- (Not relevant but worth noting) Renamed the alternative condition to any_of
-- (Not relevant but worth noting) Added the all_of condition. It has a field terms and passes only if all the terms pass
-- Added /return command
+- (Not relevant but worth noting) Renamed the `alternative` condition to `any_of`
+- (Not relevant but worth noting) Added the `all_of` condition. It has a field `terms` and passes only if all the terms pass
+- (Not relevant but worth noting) Added `/return`
 
 
 
 ## 1.19.4
 - Datapack format: 12
 - Resourcepack format: 13
-- (Not relevant but worth noting) Effect duration can now be infinite. e.g. summon shulker ~ ~ ~ {ActiveEffects:[{Id:14,Amplifier:0b,Duration:-1}]}
-- Only mobs in the dismounts_underwater entity tag will now force the rider to dismount when underwater. This does not include area_effect_clouds. Allows removal of the in_fluid requirement
+- (Not relevant but worth noting) Effect duration can now be infinite. e.g. `summon shulker ~ ~ ~ {ActiveEffects:[{Id:14,Amplifier:0b,Duration:-1}]}`
+- Only mobs in the `dismounts_underwater` entity tag will now force the rider to dismount when underwater. This does not include `area_effect_clouds`. Allows removal of the `in_fluid` requirement
 
 
 
@@ -114,7 +129,7 @@ This file logs all changes to Minecraft that affect EasyCrawl
 - Predicate check for a score can now be exact instead of a range.
 - Added passenger field to predicates
 - (Not relevant but worth noting) Marker entity added
-- (Not relevant but worth noting) /item command added
+- (Not relevant but worth noting) `/item` added
 
 
 
