@@ -1,4 +1,7 @@
+scoreboard objectives remove ezcrawl.main
+
 scoreboard objectives remove ezcrawl.crawlID
+
 scoreboard objectives remove ezcrawl.crawling
 scoreboard objectives remove ezcrawl.active
 

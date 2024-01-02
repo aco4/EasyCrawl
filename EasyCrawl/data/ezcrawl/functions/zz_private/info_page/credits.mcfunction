@@ -14,7 +14,7 @@ tellraw @s "Huge thanks to Misode (GitHub) and mcstacker.net for providing their
 tellraw @s ""
 tellraw @s "Thanks to Cloud Wolf (YouTube) for teaching how to link entities, as well as numerous other datapacking techniques."
 tellraw @s ""
-tellraw @s "Finally, thanks to the Minecraft Commands community (Discord), the Arqade community (Stack Exchange), and the Minecraft Wiki (Fandom.com) for providing invaluable help and information whenever I needed it."
+tellraw @s "Finally, thanks to the Minecraft Commands community (Discord), the Arqade community (Stack Exchange), and the Minecraft Wiki (minecraft.wiki) for providing invaluable help and information whenever I needed it."
 tellraw @s ""
 
 

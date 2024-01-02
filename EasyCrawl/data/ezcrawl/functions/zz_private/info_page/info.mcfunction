@@ -10,7 +10,7 @@ tellraw @s {"text":"EasyCrawl Info","bold":true,"underlined":true}
 tellraw @s ""
 tellraw @s "This is a datapack that allows you to crawl anytime, anywhere!"
 tellraw @s ""
-tellraw @s [{"text":"You are currently running version "},{"text":"v18","bold":true},{"text":" of this datapack."}]
+tellraw @s [{"text":"The version you are using is made for Minecraft version "},{"text":"1.20.2","bold":true},{"text":"."}]
 tellraw @s ""
 tellraw @s [{"text":"This datapack is developed by Croesus. Visit the official page "},{"text":"here","color":"blue","underlined":true,"hoverEvent":{"action":"show_text","contents":[{"text":"https://www.planetminecraft.com/data-pack/crawling-datapack/"}]},"clickEvent":{"action":"open_url","value":"https://www.planetminecraft.com/data-pack/crawling-datapack/"}},{"text":"."}]
 tellraw @s ""
