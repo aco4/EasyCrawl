@@ -9,6 +9,10 @@
 5. [Info pages](#pages)
 6. [Predicates](#predicates)
 7. [Tests](#tests)
+8. [Entity Linking](#entity_linking)
+9. [Entity Tags](#entity_tags)
+10. [Fallback](#fallback)
+11. [Resourcepack](#resourcepack)
 
 ## pack.mcmeta<a id="mcmeta"></a>
 
@@ -301,14 +305,6 @@ is probably more performant than
   }
 }
 ```
-```
-{
-  "values":[
-    "minecraft:armor_stand",
-    "minecraft:shulker"
-  ]
-}
-```
 
 ## Tests<a id="tests"></a>
 
@@ -359,7 +355,7 @@ Causes the player to be `{OnGround:0b}` which violates `can_crawl.json`. Not sur
 
 > TODO is it possible?
 
-## Entity Linking
+## Entity Linking<a id="entity_linking"></a>
 
 We wish to link 3 entities: the player, the shulker, and the shulker vehicle (area_effect_cloud). To do this, we use an ID system in combination with a counter that increments upon each spawn:
 ```
@@ -377,12 +373,21 @@ tag @e[tag=noID] remove noID
 ```
 > TODO explain how to use it now that it's setup
 
-## Entity tags
+## Entity tags<a id="entity_tags"></a>
 
 It's better to have it even though the performance boost is negligible.
 
+`crawl_entities.json`:
+```
+{
+  "values":[
+    "minecraft:armor_stand",
+    "minecraft:shulker"
+  ]
+}
+```
 
-## Fallback
+## Fallback<a id="fallback"></a>
 
 To handle cases where the area_effect_cloud unlinks from the player (e.g. player disconnect), we have the area_effect_cloud maintain a score in `ezcrawl.active`. We keep this value alive in `move_to_player` by setting it to `1`. If this fails for any reason, we kill the area_effect_cloud and shulker. This is done in `tick`, so it's reliable but rather performance heavy:
 
@@ -402,3 +407,101 @@ EasyCrawl fallback also utilizes `ezcrawl:kill` instead of `ezcrawl:stop`. This 
 > TODO this is a bug. if the player goes through a nether portal, their `ezcrawl.crawling` continues to increment. BAD. Consolidate `kill` and `stop` into 1 function? Tricky because contexts are lost. I re-added the mini-fallback that uses #ezcrawl.success, and that fixed it.
 
 > TODO when the shulker is killed via /kill, `ezcrawl.crawling` continues to increment for a second while the shulker goes through the death animation. Even though the player is now standing. BUG.
+
+## Resourcepack<a id="resourcepack"></a>
+```
+'EasyCrawl Resourcepack'/
+├── assets/
+│   └── minecraft/
+│       ├── optifine/      🭮─── possible to add optifine compatibility?
+│       │   └── cem/
+│       │       └── shulker.jem     🭮─── JSON Entity Model
+│       ├── shaders/
+│       │   └── core/
+│       │       ├── rendertype_entity_cutout_no_cull_z_offset.fsh
+│       │       └── rendertype_entity_solid.fsh
+│       └── textures/
+│           └── entity/
+│               └── shulker/
+│                   └── shulker_white.png
+├── pack.mcmeta
+└── pack.png
+```
+
+### Three problems
+1. Invisibility doesn't remove the shulker head.
+2. Summoned shulkers are fully visible for 1 game tick, regardless of any applied invisibility effect. This results in a flicker each time the player begins crawling.
+3. Removing the head texture in `shulker_white.png` doesn't work, due to [MC-167900](https://bugs.mojang.com/browse/MC-167900).
+
+Thus, we must use shaders.
+
+### Shaders
+According to [github.com/McTsts/Minecraft-Shaders-Wiki](https://github.com/McTsts/Minecraft-Shaders-Wiki/), the `entity_solid` core shader affects:
+
+> - The base (not flag) of banners,
+> - Shulker heads,
+> - Books on lecterns/enchantment tables,
+> - Shields,
+> - Beds,
+> - The bell part of bells,
+> - Capes,
+> - Shells of conduits,
+> - Paintings,
+> - Tridents,
+> - The ears on the Deadmau5 skin,
+> - The bottom skin layer of the first-person hand,
+> - The conduit item in the inventory.
+>
+> With item frames, the item frame entity itself is part of the shader, however, items on it are not. Only the filled-in parts of maps placed on an item frame are part of the shader.
+
+To remove the shulker head, we remove the head in `shulker_white.png` and modify the `entity_solid` core shader:
+```
+if (color.a == 0) {
+    discard;
+}
+```
+> `color.a` represents the alpha value of the pixel. `discard` stops the pixel from being rendered.
+
+According to [github.com/McTsts/Minecraft-Shaders-Wiki](https://github.com/McTsts/Minecraft-Shaders-Wiki/), the `entity_cutout_no_cull_z_offset` core shader affects:
+
+> Mob skulls, both on entities and as an item. Does not include player heads. Also handles shulker shells and minecarts.
+
+To remove the shulker shell, we modify the shell in `shulker_white.png` to have a transparency of 99% (`color.a` `==` `0.99`) and modify the `entity_cutout_no_cull_z_offset` core shader:
+```
+if (color.a < 0.1 || (color.a > 0.98 && color.a < 0.99)) {
+    discard;
+}
+```
+
+The reason we don't remove it outright (like with the shulker head) is because we don't want to make regular white shulker boxes invisible.
+
+### Optifine
+`shulker.jem` by `u/ChaosFile`:
+```
+{
+	"textureSize": [16, 16],
+	"models": [
+		{
+			"part": "head",
+			"id": "head",
+			"invertAxis": "xy",
+			"translate": [0, 0, 0],
+			"submodels": [
+				{
+					"id": "base",
+					"invertAxis": "xy",
+					"translate": [0, 0, 0],
+					"submodels": [
+						{
+							"id": "lit",
+							"invertAxis": "xy",
+							"translate": [0, 0, 0]
+						}
+					]
+				}
+			]
+		}
+	]
+}
+```
+> TODO add optifine support [guide](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/2780050-a-basic-guide-to-optifine-entity-modelling)
