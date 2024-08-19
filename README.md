@@ -3,21 +3,21 @@ This is a Minecraft datapack that lets you crawl anytime, anywhere! Just look do
 
 ## Files
 
-Name              |File                 |Version |Download
-:-----------------|:--------------------|:-------|:------:
-EasyCrawl 1.20.6  |EasyCrawl-1.20.6     |1.20.6  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.6.zip)
-EasyCrawl 1.20.5  |EasyCrawl-1.20.5     |1.20.5  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.5.zip)
-EasyCrawl 1.20.4a |EasyCrawl-1.20.4a    |1.20.4  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.4a.zip)
-EasyCrawl 1.20.4  |EasyCrawl-1.20.4     |1.20.4  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.4.zip)
-EasyCrawl 1.20.3a |EasyCrawl-1.20.3a    |1.20.3  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.3a.zip)
-EasyCrawl 1.20.3  |EasyCrawl-1.20.3     |1.20.3  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.3.zip)
-EasyCrawl 1.20.2  |EasyCrawl-1.20.2     |1.20.2  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.2.zip)
-EasyCrawl 1.20.1  |easycrawl-1.20.1-v18 |1.20.1  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.20.1-v18.zip)
-EasyCrawl 1.20    |easycrawl-1.20-v18   |1.20    |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.20-v18.zip)
-EasyCrawl 1.19.4  |easycrawl-1.19.4-v18 |1.19.4  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.19.4-v18.zip)
-EasyCrawl 1.19    |easycrawl-1.19-v17   |1.19    |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.19-v17.zip)
-EasyCrawl 1.18.2  |easycrawl-1.18.2-v17 |1.18.2  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.18.2-v17.zip)
-EasyCrawl 1.17.1  |easycrawl-1.17.1-v17 |1.17.1  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.17.1-v17.zip)
+File                 |Version |Download
+:--------------------|:-------|:------:
+EasyCrawl-1.20.6     |1.20.6  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.6.zip)
+EasyCrawl-1.20.5     |1.20.5  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.5.zip)
+EasyCrawl-1.20.4-a   |1.20.4  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.4-a.zip)
+EasyCrawl-1.20.4     |1.20.4  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.4.zip)
+EasyCrawl-1.20.3-a   |1.20.3  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.3-a.zip)
+EasyCrawl-1.20.3     |1.20.3  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.3.zip)
+EasyCrawl-1.20.2     |1.20.2  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.20.2.zip)
+easycrawl-1.20.1-v18 |1.20.1  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.20.1-v18.zip)
+easycrawl-1.20-v18   |1.20    |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.20-v18.zip)
+easycrawl-1.19.4-v18 |1.19.4  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.19.4-v18.zip)
+easycrawl-1.19-v17   |1.19    |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.19-v17.zip)
+easycrawl-1.18.2-v17 |1.18.2  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.18.2-v17.zip)
+easycrawl-1.17.1-v17 |1.17.1  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/easycrawl-1.17.1-v17.zip)
 
 Name                          |File                            |Version |Download
 :-----------------------------|:-------------------------------|:-------|:--------------:
