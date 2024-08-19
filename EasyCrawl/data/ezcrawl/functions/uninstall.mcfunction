@@ -20,7 +20,7 @@ scoreboard objectives remove ezcrawl.info_page
 kill @e[tag=ezcrawl.crawl_entity]
 
 tellraw @s ""
-tellraw @s {"text":"UNINSTALLED","color":"dark_red","bold":"true"}
+tellraw @s {"text":"UNINSTALLED","color":"dark_red","bold":true}
 tellraw @s ""
 tellraw @s [{"text":"EasyCrawl has successfully wiped all traces of itself from this world! You may now "},{"text":"disable the datapack","color":"red","hoverEvent":{"action":"show_text","contents":[{"text":"/datapack disable "}]},"clickEvent":{"action":"suggest_command","value":"/datapack disable "}},{"text":"."}]
 tellraw @s ""
