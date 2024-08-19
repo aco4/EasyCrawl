@@ -1,6 +1,9 @@
 # Changelog
 
 ## August 19th, 2024
+Released `EasyCrawl-1.21.1`
+- No changes
+
 Released `EasyCrawl-1.21`
 - Lowered default stop angle from -75 to -50
 - Improved predicate to use entity flag instead of NBT check for OnGround
