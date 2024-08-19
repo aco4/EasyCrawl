@@ -2,24 +2,115 @@
 # Relevant Changes
 This file logs all changes to Minecraft that affect EasyCrawl
 
+## 1.21.1
+- No changes
+
+## 1.21
+- Datapack format: 48
+- Resourcepack format: 34
+- Renamed directories
+        predicates -> predicate
+        functions -> function
+        tags/functions -> tags/function
+        tags/entity_types -> tags/entity_type
+- Added `@n` entity selector, selecting the nearest entity
+- New `Movement` sub-predicate
+- Added new entity flag predicate `is_on_ground`, obsoleting an NBT check:
+```JSON
+{
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "nbt": "{OnGround:1b}"
+  }
+}
+```
+```JSON
+{
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "flags": {
+      "is_on_ground": true
+    }
+  }
+}
+```
+- The player predicate gamemode field has been changed to accept a list of gamemodes
+```JSON
+{
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "type_specific": {
+      "type": "minecraft:player",
+      "gamemode": "spectator"
+    }
+  }
+}
+```
+```JSON
+{
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "type_specific": {
+      "type": "minecraft:player",
+      "gamemode": [
+        "spectator"
+      ]
+    }
+  }
+}
+
+```
+
+
+
+## 1.20.6
+- No changes
+
+
+
+## 1.20.5
+- Datapack format: 41
+- Resourcepack format: 32
+- Changed the `/particle` command syntax for particles with extra options:
+```
+dust 0.1 0.2 0.3 0.4
+```
+```
+dust{color:[0.1,0.2,0.3],scale:0.4}
+```
+- Added the `generic.scale` attribute, which allows changing the size of any mob to anywhere between 0.0625 and 16 times their default size
+- Added the `generic.step_height` attribute. Default is 0.6, and the valid range is from 0 to 10
+
+
+
 ## 1.20.4
-- Nothing
+- No changes
 
 
 
 ## 1.20.3
 - Datapack format: 26
 - Resourcepack format: 22
-- (Not relevant but worth noting) Added `/return run`
-- (Not relevant but worth noting) `/function` command no longer has a result unless it uses `/return`
+- (Not currently used) Added `/return run`
+- (Not currently used) `/function` command no longer has a result unless it uses `/return`
 
 
 
 ## 1.20.2
 - Datapack format: 18
 - Resourcepack format: 18
+- Renamed `ActiveEffects` to `active_effects`
+- Renamed `Id` to `id`
+- Renamed `Amplifier` to `amplifier`
+- Renamed `Duration` to `duration`
+- Renamed `ShowParticles` to `show_particles`
 - Added overlays and supported_formats to `pack.mcmeta`
 - Added macros
+- Added newlines (`\`)
 
 
 
@@ -31,16 +122,16 @@ This file logs all changes to Minecraft that affect EasyCrawl
 ## 1.20
 - Datapack format: 15
 - Resourcepack format: 15
-- (Not relevant but worth noting) Renamed the `alternative` condition to `any_of`
-- (Not relevant but worth noting) Added the `all_of` condition. It has a field `terms` and passes only if all the terms pass
-- (Not relevant but worth noting) Added `/return`
+- (Not currently used) Renamed the `alternative` condition to `any_of`
+- (Not currently used) Added the `all_of` condition. It has a field `terms` and passes only if all the terms pass
+- (Not currently used) Added `/return`
 
 
 
 ## 1.19.4
 - Datapack format: 12
 - Resourcepack format: 13
-- (Not relevant but worth noting) Effect duration can now be infinite. e.g. `summon shulker ~ ~ ~ {ActiveEffects:[{Id:14,Amplifier:0b,Duration:-1}]}`
+- Effect duration can now be infinite. e.g. `summon shulker ~ ~ ~ {ActiveEffects:[{Id:14,Amplifier:0b,Duration:-1}]}`
 - Only mobs in the `dismounts_underwater` entity tag will now force the rider to dismount when underwater. This does not include `area_effect_clouds`. Allows removal of the `in_fluid` requirement
 
 
@@ -63,38 +154,29 @@ This file logs all changes to Minecraft that affect EasyCrawl
 - Datapack format: 10
 - Resourcepack format: 9
 - Predicate gamemode check changed:
-
-#### 1.19:
 ```json
 {
-  "condition": "minecraft:inverted",
-  "term": {
-    "condition": "minecraft:entity_properties",
-    "entity": "this",
-    "predicate": {
-      "type_specific": {
-        "type": "player",
-        "gamemode": "spectator"
-      }
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "player": {
+      "gamemode": "spectator"
     }
   }
 }
 ```
-
-#### 1.18.2:
 ```json
 {
-  "condition": "minecraft:inverted",
-  "term": {
-    "condition": "minecraft:entity_properties",
-    "entity": "this",
-    "predicate": {
-      "player": {
-        "gamemode": "spectator"
-      }
+  "condition": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "type_specific": {
+      "type": "player",
+      "gamemode": "spectator"
     }
   }
 }
+
 ```
 
 
@@ -128,8 +210,8 @@ This file logs all changes to Minecraft that affect EasyCrawl
 - Rendering now uses the OpenGL 3.2 core profile. All fixed function rendering has been replaced with shader based rendering. All shaders except blit can be replaced in resource packs. Added folders in resource packs shaders/core and shaders/include.
 - Predicate check for a score can now be exact instead of a range.
 - Added passenger field to predicates
-- (Not relevant but worth noting) Marker entity added
-- (Not relevant but worth noting) `/item` added
+- (Not currently used) Marker entity added
+- (Not currently used) `/item` added
 
 
 

@@ -1,3 +1,4 @@
+
 # Developer documentation
 
 ## Table of Contents
@@ -253,7 +254,7 @@ EasyCrawl/
 │   ├── ezcrawl/
 │   │   ├── functions/
 │   │   │   └── ...
-│   │   ├── predicates/      🭮───
+│   │   ├── predicates/      <───
 │   │   │   └── ...
 │   │   └── tags/entity_types/
 │   │       └── ...
@@ -413,9 +414,9 @@ EasyCrawl fallback also utilizes `ezcrawl:kill` instead of `ezcrawl:stop`. This 
 'EasyCrawl Resourcepack'/
 ├── assets/
 │   └── minecraft/
-│       ├── optifine/      🭮─── possible to add optifine compatibility?
+│       ├── optifine/      <─── possible to add optifine compatibility?
 │       │   └── cem/
-│       │       └── shulker.jem     🭮─── JSON Entity Model
+│       │       └── shulker.jem     <─── JSON Entity Model
 │       ├── shaders/
 │       │   └── core/
 │       │       ├── rendertype_entity_cutout_no_cull_z_offset.fsh
@@ -505,3 +506,35 @@ The reason we don't remove it outright (like with the shulker head) is because w
 }
 ```
 > TODO add optifine support [guide](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/2780050-a-basic-guide-to-optifine-entity-modelling)
+
+## Scale<a id="scale"></a>
+In 1.20.5, the `generic.scale` attribute was added, which allows changing the size of any mob to anywhere between 0.0625 and 16 times their default size. With a scale of 0.0625, the shulker hitbox becomes 0.0625 blocks in width and height.
+
+Pros:
+- This can be used to shrink the shulker to near-unnoticeable levels. The head is even smaller and is so small that a resourcepack might not be required anymore
+
+Cons:
+- Removing the resourcepack comes with the side effect of the shulker being visible for a split second upon initial summon
+- It becomes trivial to outrun the shulker, and can happen simply by walking
+
+## Testing<a id="testing"></a>
+The primary resource for updating the datapack is the Minecraft changelog. Any changes that affect EasyCrawl should be noted and addressed. However, the changelog is usually massive and most changes don't apply to EasyCrawl; this is why `relevant_changes.md` exists. But even with diligent record-keeping, changes can slip through the gaps. Some changes aren't explicitly listed in the Minecraft changelog; some aren't deemed relevant enough to note; while some are simply missed by human error.
+
+Therefore, the datapacks must be tested in-game to ensure that all the mechanics are working correctly. Below, a list is provided detailing, in a somewhat ordered fashion, some suggested testing procedures.
+
+### Movement check
+Run through the basic motions of crawling.
+- Sneak and look down
+- Move around
+- Stand back up
+- Also try climbing up and down blocks (slabs, chains)
+- Falling off ledges (test OnGround)
+- Changing gamemode mid-crawl
+- Entering a nether portal mid-crawl
+
+### Syntax check
+Type `/function ezcrawl:` in chat and scroll through the list of provided auto-complete options. If a function has a syntax error, it won't be listed. Some tips:
+- There should be 7 info pages (help, info, settings, uninstall, etc.)
+- ...
+
+Type `/execute if predicate` in chat and scroll through the list of provided auto-complete options. If a predicate has a syntax error, it won't be listed.

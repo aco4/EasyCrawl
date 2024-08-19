@@ -1,5 +1,30 @@
 # Changelog
 
+## August 19th, 2024
+Released `EasyCrawl-1.21`
+- Lowered default stop angle from -75 to -50
+- Improved predicate to use entity flag instead of NBT check for OnGround
+- Replaced `ezcrawl.settings.movement` scoreboard with improved `is_moving` predicate
+- Updated predicate syntax
+- Updated `/particle` syntax
+- Renamed directories
+- Updated pack format
+
+Released `EasyCrawl-1.20.6`
+- No changes
+
+Released `EasyCrawl-1.20.5`
+- Updated pack format
+- Updated shulker to use infinite invisibility duration (-1) instead of max integer (2147483647)
+- Remove unnecessary `NoGravity` tag from the area_effect_cloud
+- Fixed the uninstall function (quoted boolean syntax error)
+
+Updated `EasyCrawl-1.20.4` to `EasyCrawl-1.20.4-a`
+- Fixed the uninstall function (quoted boolean syntax error)
+
+Updated `EasyCrawl-1.20.3` to `EasyCrawl-1.20.3-a`
+- Fixed the uninstall function (quoted boolean syntax error)
+
 ## January 2nd, 2024
 Released `EasyCrawl-1.20.2`, `EasyCrawl-1.20.3`, and `EasyCrawl-1.20.4`
 - Begin implementation of new versioning system (see versioning.md on GitHub for details)
