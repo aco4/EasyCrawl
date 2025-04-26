@@ -1,5 +1,13 @@
 # Changelog
 
+## March 26th, 2025
+Released `EasyCrawl-1.21.5`
+- Updated naming, syntax, pack format, etc. to 1.21.5
+- Deprecated area_effect_cloud vehicle in favor of item_display
+- Uses `scale` attribute to shrink decrease the shulker footprint
+- Uses 9 smaller shulkers instead of 1 large shulker
+- Other minor changes
+
 ## August 19th, 2024
 Released `EasyCrawl-1.21.1`
 - No changes
