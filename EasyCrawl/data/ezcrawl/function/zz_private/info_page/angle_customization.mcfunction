@@ -1,7 +1,7 @@
 function ezcrawl:zz_private/info_page/clear
 
 # If displaying info page from the menu, display back button
-execute if score @s ezcrawl.info_page matches 100.. run tellraw @s {"text":"< Back","bold":true,"hoverEvent":{"action":"show_text","contents":[{"text":"/function ezcrawl:menu"}]},"clickEvent":{"action":"run_command","value":"/function ezcrawl:menu"}}
+execute if score @s ezcrawl.info_page matches 100.. run tellraw @s {"bold":true,"click_event":{"action":"run_command","command":"/function ezcrawl:menu"},"hover_event":{"action":"show_text","contents":[{"text":"/function ezcrawl:menu"}],"value":[{"text":""}]},"text":"< Back"}
 
 
 
@@ -12,8 +12,8 @@ tellraw @s {"text":"Green range = can begin crawling"}
 tellraw @s {"text":"Red range = stop crawling"}
 tellraw @s ""
 tellraw @s "Point to your desired angle, then type:"
-tellraw @s [{"text":" "},{"text":"/trigger setCrawlStartAngle","color":"green","hoverEvent":{"action":"show_text","contents":[{"text":"/trigger setCrawlStartAngle"}]},"clickEvent":{"action":"suggest_command","value":"/trigger setCrawlStartAngle"}},{"text":" to modify the green range"}]
-tellraw @s [{"text":" "},{"text":"/trigger setCrawlStopAngle","color":"green","hoverEvent":{"action":"show_text","contents":[{"text":"/trigger setCrawlStopAngle"}]},"clickEvent":{"action":"suggest_command","value":"/trigger setCrawlStopAngle"}},{"text":" to modify the red range"}]
+tellraw @s [" ",{"click_event":{"action":"suggest_command","command":"/trigger setCrawlStartAngle"},"color":"green","hover_event":{"action":"show_text","contents":[{"text":"/trigger setCrawlStartAngle"}],"value":[{"text":""}]},"text":"/trigger setCrawlStartAngle"}," to modify the green range"]
+tellraw @s [" ",{"click_event":{"action":"suggest_command","command":"/trigger setCrawlStopAngle"},"color":"green","hover_event":{"action":"show_text","contents":[{"text":"/trigger setCrawlStopAngle"}],"value":[{"text":""}]},"text":"/trigger setCrawlStopAngle"}," to modify the red range"]
 tellraw @s ""
 
 

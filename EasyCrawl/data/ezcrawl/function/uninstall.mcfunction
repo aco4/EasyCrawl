@@ -20,7 +20,7 @@ kill @e[tag=ezcrawl.crawl_entity]
 tellraw @s ""
 tellraw @s {"text":"UNINSTALLED","color":"dark_red","bold":true}
 tellraw @s ""
-tellraw @s [{"text":"EasyCrawl has successfully wiped all traces of itself from this world! You may now "},{"text":"disable the datapack","color":"red","hoverEvent":{"action":"show_text","contents":[{"text":"/datapack disable "}]},"clickEvent":{"action":"suggest_command","value":"/datapack disable "}},{"text":"."}]
+tellraw @s ["EasyCrawl has successfully wiped all traces of itself from this world! You may now ",{"click_event":{"action":"suggest_command","command":"/datapack disable "},"color":"red","hover_event":{"action":"show_text","contents":[{"text":"/datapack disable "}],"value":[{"text":""}]},"text":"disable the datapack"},"."]
 tellraw @s ""
-tellraw @s [{"text":"If you wish to restore the datapack, type "},{"text":"/reload","color":"red","hoverEvent":{"action":"show_text","contents":[{"text":"/reload"}]},"clickEvent":{"action":"suggest_command","value":"/reload"}},{"text":". This will also restore default settings."}]
+tellraw @s ["If you wish to restore the datapack, type ",{"click_event":{"action":"suggest_command","command":"/reload"},"color":"red","hover_event":{"action":"show_text","contents":[{"text":"/reload"}],"value":[{"text":""}]},"text":"/reload"},". This will also restore default settings."]
 tellraw @s ""

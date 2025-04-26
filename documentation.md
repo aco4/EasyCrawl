@@ -1,4 +1,5 @@
 
+
 # Developer documentation
 
 ## Table of Contents
@@ -26,7 +27,6 @@ Should follow a format similar to:
   }
 }
 ```
-*(I like 2 space indent.)*
 
 ## Folder structure<a id="structure"></a>
 ```
@@ -37,7 +37,9 @@ EasyCrawl/
 │   │   │   └── ...
 │   │   ├── predicates/
 │   │   │   └── ...
-│   │   └── tags/entity_types/
+│   │   ├── tags/entity_types/
+│   │   │   └── ...
+│   │   └── loot_table/
 │   │       └── ...
 │   └── minecraft/tags/functions/
 │       └── ...
@@ -263,12 +265,13 @@ EasyCrawl/
 ├── pack.mcmeta
 └── pack.png
 ```
-EasyCrawl currently uses four:
+EasyCrawl has five:
 
 1. `can_crawl.json`
 2. `can_start_crawling.json`
 3. `has_passenger.json`
 4. `has_vehicle.json`
+5. `is_moving.json`
 
 `can_start_crawling.json`
 - Player must satisfy score `ezcrawl.crawling` `<` `0`
@@ -307,11 +310,7 @@ is probably more performant than
 }
 ```
 
-## Tests<a id="tests"></a>
-
-- Cannot start crawling while swimming
-- Crawl and then enter a nether portal (should stop crawling and entities deleted. Also score in ezcrawl.crawling should be reset)
-
+`is_moving.json` is used to stop displaying the angle settings HUD
 
 ## Crawl Score
 
@@ -319,48 +318,24 @@ Non-crawling players have no score in `ezcrawl.crawling`
 
 Crawling players have a score in `ezcrawl.crawling` that starts at 0 and increases every tick.
 
-## Interpolation
+## Vehicle
+Shulkers snap their hitbox to the block grid, grid-aligned, unless riding a vehicle. Old versions of EasyCrawl use an `area_effect_cloud`, but newer ones will use an `item_display` for convenience.
 
-If the player moves too quickly, they can outrun the shulker (who is constantly teleporting to the player).
+Vehicle             |Supports passengers|Version|Can outrun the shulker with|Dismounts underwater|Updates render on the client|Reduce tp interpolation|Passenger y-offset|
+:-------------------|:------------------|:------|:--------------------------|:-------------------|:---------------------------|:----------------------|:-----------------|
+`marker`            |no                 |1.17   |-                          |-                   |-                           |-                      |-                 |
+`armor_stand`       |yes                |1.8    |No speed                   |no                  |yes                         |no                     |0 if marker       |
+`area_effect_cloud` |yes                |1.9    |Speed 8                    |no                  |w/ air toggling             |w/ air toggling        |0.5 (in 1.20.2)   |
+`block_display`     |yes                |1.19.4 |Speed 8                    |no                  |yes                         |yes                    |0                 |
+`item_display`      |yes                |1.19.4 |untested                   |no                  |yes                         |yes                    |0                 |
+`text_display`      |yes                |1.19.4 |untested                   |no                  |yes                         |yes                    |0                 |
 
-> The game client interpolates entity positions across 1 second or so. This means that, although the game knows where the entity is, it doesn't show at that position in favor of a smoother looking motion. Some entities, however, are exempt to this interpolation, such as: area effect clouds, items, and most projectiles. We can make an entity ride one of the exempt entities to bypass most of the interpolation, leaving around 4 ticks of it, down from 20. However, an exempt entity does not update its position on its own. To account for this, we can force it to update its position by changing its `Air` NBT. For example: by toggling between `{Air: 1b}` and `{Air: 0b}`, or by storing gametime into it.
-
-Vehicle                               |Can outrun the shulker with
-:-------------------------------------|:------
-`armor_stand`                         |No speed
-`area_effect_cloud` (w/ air toggling) |Speed 8
-`block_display` (w/ interpolation 0)  |Speed 8
-
-> Note that `marker` entities cannot support passengers.
-
-## area_effect_cloud
-
-The AEC is the ideal vehicle entity:
-- Reduces interpolation
-- Compatible with pre-1.20.2
-
-Special considerations:
-- Must air toggle for full benefits
-- Must not despawn due to duration
-- Passenger rides 0.5 blocks higher than the AEC
-
-> TODO there may be a discrepancy in AEC ride height between MC versions. in 1.20.2 it's .5 above the AEC origin, but the AEC-based branch says passengers riding area_effect_clouds are 0.375 blocks above the area_effect_cloud's center.
-
-## Detecting crawling externally
-
-> TODO this would be useful. Can detect if the player forced themselves to crawl using a trapdoor and continue to apply the crawling after they move into a tall space.
-
-## Crawling down slabs/stairs
-
-Causes the player to be `{OnGround:0b}` which violates `can_crawl.json`. Not sure how to fix this.
-
-> TODO is it possible?
+> The client interpolates entity positions across 1 second or so for smoother motion. Although the client knows where the entity is, it doesn't immediately render at that position. Some entities, however, are exempt to this interpolation, such as: area effect clouds, items, and most projectiles. We can make an entity ride one of the exempt entities to bypass most of the interpolation, leaving around 4 ticks of it, down from 20. However, an exempt entity does not update its position on its own. To account for this, we can force it to update its position by changing its `Air` NBT. For example: by toggling between `{Air: 1b}` and `{Air: 0b}`, or by storing gametime into it.
 
 ## Entity Linking<a id="entity_linking"></a>
-
-We wish to link 3 entities: the player, the shulker, and the shulker vehicle (area_effect_cloud). To do this, we use an ID system in combination with a counter that increments upon each spawn:
+The vehicle + shulker must reliably teleport to the player that spawned them. Link these 3 entities with an ID system:
 ```
-summon area_effect_cloud ~ ~ ~ {Tags:["noID"],Passengers:[{id:"shulker",Tags:["noID"]}]}
+summon item_display ~ ~ ~ {Tags:["noID"],Passengers:[{id:"shulker",Tags:["noID"]}]}
 
 # Link the player, vehicle, and passenger
 scoreboard players operation @s ID = #counter ID
@@ -373,6 +348,46 @@ scoreboard players add #counter ID 1
 tag @e[tag=noID] remove noID
 ```
 > TODO explain how to use it now that it's setup
+
+If a crawl entity unlinks (e.g. disconnect, dimension change), kill them.
+
+```
+execute as @e[tag=vehicle,predicate=!has_passenger] run function kill
+execute as @e[tag=shulker,predicate=!has_vehicle] run function kill
+```
+
+To detect unlinking between the vehicle and player:
+- Maintain a score in scoreboard `ezcrawl.active`.
+- Set the score upon success in `move_to_player.mcfunction`.
+- Check the score later. If not set, something went wrong.
+
+```
+scoreboard players set @e[tag=vehicle] active 0
+
+execute as @a run function move_to_player
+
+execute as @e[tag=vehicle,scores={active=0}] run function kill
+```
+
+These checks are done in `tick` for reliability, but it's rather performance heavy.
+
+> TODO optimize this?
+
+This fallback system also utilizes `ezcrawl:kill` instead of `ezcrawl:stop`. This doesn't clean up the player scores so it's a bit more raw, but I think it works.
+
+> TODO this is a bug. if the player goes through a nether portal, their `ezcrawl.crawling` continues to increment. BAD. Consolidate `kill` and `stop` into 1 function? Tricky because contexts are lost. I re-added the mini-fallback that uses #ezcrawl.success, and that fixed it.
+
+> TODO when the shulker is killed via /kill, `ezcrawl.crawling` continues to increment for a second while the shulker goes through the death animation. Even though the player is now standing. BUG.
+
+## Detecting crawling externally
+
+> TODO this would be useful. Can detect if the player forced themselves to crawl using a trapdoor and continue to apply the crawling after they move into a tall space.
+
+## Crawling down slabs/stairs
+
+Causes the player to be `{OnGround:0b}` which violates `can_crawl.json`. Not sure how to fix this.
+
+> TODO is it possible?
 
 ## Entity tags<a id="entity_tags"></a>
 
@@ -387,27 +402,6 @@ It's better to have it even though the performance boost is negligible.
   ]
 }
 ```
-
-## Fallback<a id="fallback"></a>
-
-To handle cases where the area_effect_cloud unlinks from the player (e.g. player disconnect), we have the area_effect_cloud maintain a score in `ezcrawl.active`. We keep this value alive in `move_to_player` by setting it to `1`. If this fails for any reason, we kill the area_effect_cloud and shulker. This is done in `tick`, so it's reliable but rather performance heavy:
-
-> TODO optimize this?
-```
-scoreboard players set @e[tag=aec] active 0
-
-execute as @a run function foo:process
-
-execute as @e[tag=aec,scores={active=0}] run function foo:kill
-execute as @e[tag=aec,predicate=!foo:has_passenger] run function foo:kill
-execute as @e[tag=shulk,predicate=!foo:has_vehicle] run function foo:kill
-```
-
-EasyCrawl fallback also utilizes `ezcrawl:kill` instead of `ezcrawl:stop`. This doesn't clean up the player scores so it's a bit more raw, but I think it works.
-
-> TODO this is a bug. if the player goes through a nether portal, their `ezcrawl.crawling` continues to increment. BAD. Consolidate `kill` and `stop` into 1 function? Tricky because contexts are lost. I re-added the mini-fallback that uses #ezcrawl.success, and that fixed it.
-
-> TODO when the shulker is killed via /kill, `ezcrawl.crawling` continues to increment for a second while the shulker goes through the death animation. Even though the player is now standing. BUG.
 
 ## Resourcepack<a id="resourcepack"></a>
 ```
@@ -508,19 +502,27 @@ The reason we don't remove it outright (like with the shulker head) is because w
 > TODO add optifine support [guide](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/2780050-a-basic-guide-to-optifine-entity-modelling)
 
 ## Scale<a id="scale"></a>
-In 1.20.5, the `generic.scale` attribute was added, which allows changing the size of any mob to anywhere between 0.0625 and 16 times their default size. With a scale of 0.0625, the shulker hitbox becomes 0.0625 blocks in width and height.
+In 1.20.5, the `generic.scale` attribute was added. Min/max scale = `[0.0625, 16]`. With a scale of 0.0625, the shulker hitbox becomes 0.0625 blocks in width and height.
 
-Pros:
-- This can be used to shrink the shulker to near-unnoticeable levels. The head is even smaller and is so small that a resourcepack might not be required anymore
+- the shulker becomes less visually noticeable, reducing the impact on no-resourcepack users
+- the shulker's hitbox shrinks, reducing interference with the environment (other players, projectiles, pressure plates, etc.)
 
-Cons:
-- Removing the resourcepack comes with the side effect of the shulker being visible for a split second upon initial summon
-- It becomes trivial to outrun the shulker, and can happen simply by walking
+But since teleportation isn't instant, it becomes trivially easy to outrun the shulker at small sizes. Solution: Use a 3x3 grid of shulkers. Since the player is 0.6 blocks in width:
+
+(0.0625/2) + 0.6 + (0.0625/2)
+
+3x3 grid with N E S W
+
+.   |`-x`               |`x`         |`+x`
+----|-------------------|------------|------------------
+`-z`|~-0.6625 ~ ~-0.6625|~ ~ ~-0.6625|~0.6625 ~ ~-0.6625
+`z` |~-0.6625 ~ ~       |~ ~ ~       |~0.6625 ~ ~
+`+z`|~-0.6625 ~ ~0.6625 |~ ~ ~0.6625 |~0.6625 ~ ~0.6625
 
 ## Testing<a id="testing"></a>
 The primary resource for updating the datapack is the Minecraft changelog. Any changes that affect EasyCrawl should be noted and addressed. However, the changelog is usually massive and most changes don't apply to EasyCrawl; this is why `relevant_changes.md` exists. But even with diligent record-keeping, changes can slip through the gaps. Some changes aren't explicitly listed in the Minecraft changelog; some aren't deemed relevant enough to note; while some are simply missed by human error.
 
-Therefore, the datapacks must be tested in-game to ensure that all the mechanics are working correctly. Below, a list is provided detailing, in a somewhat ordered fashion, some suggested testing procedures.
+Therefore, the datapacks must be tested in-game to ensure that all the mechanics are working correctly. Below, a list is provided detailing some tests.
 
 ### Movement check
 Run through the basic motions of crawling.
@@ -530,7 +532,9 @@ Run through the basic motions of crawling.
 - Also try climbing up and down blocks (slabs, chains)
 - Falling off ledges (test OnGround)
 - Changing gamemode mid-crawl
-- Entering a nether portal mid-crawl
+- Enter a nether portal while crawling (should stop crawling and entities deleted. Also score in ezcrawl.crawling should be reset)
+- Crawl underwater
+- Cannot start crawling while swimming
 
 ### Syntax check
 Type `/function ezcrawl:` in chat and scroll through the list of provided auto-complete options. If a function has a syntax error, it won't be listed. Some tips:
@@ -538,3 +542,12 @@ Type `/function ezcrawl:` in chat and scroll through the list of provided auto-c
 - ...
 
 Type `/execute if predicate` in chat and scroll through the list of provided auto-complete options. If a predicate has a syntax error, it won't be listed.
+
+### Angle Customization check
+- `/trigger customizeCrawlAngles`
+
+### Relog check
+
+### Nether portal check
+
+### Teleportation check
