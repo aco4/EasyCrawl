@@ -265,13 +265,14 @@ EasyCrawl/
 ├── pack.mcmeta
 └── pack.png
 ```
-EasyCrawl has five:
+EasyCrawl has six:
 
 1. `can_crawl.json`
 2. `can_start_crawling.json`
 3. `has_passenger.json`
 4. `has_vehicle.json`
 5. `is_moving.json`
+6. `standing_on.json`
 
 `can_start_crawling.json`
 - Player must satisfy score `ezcrawl.crawling` `<` `0`
@@ -311,6 +312,8 @@ is probably more performant than
 ```
 
 `is_moving.json` is used to stop displaying the angle settings HUD
+
+`standing_on.json` is used to determine if an entity is standing on a shulker
 
 ## Crawl Score
 
