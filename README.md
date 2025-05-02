@@ -5,6 +5,7 @@ This is a Minecraft datapack that lets you crawl anytime, anywhere! Just look do
 
 File                 |Version |Download
 :--------------------|:-------|:------:
+EasyCrawl-1.21.5-a   |1.21.5  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.21.5-a.zip)
 EasyCrawl-1.21.5     |1.21.5  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.21.5.zip)
 EasyCrawl-1.21.1     |1.21.1  |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.21.1.zip)
 EasyCrawl-1.21       |1.21    |[⬇️](https://github.com/aco4/EasyCrawl/raw/main/releases/datapacks/EasyCrawl-1.21.zip)

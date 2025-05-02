@@ -1,5 +1,13 @@
 # Changelog
 
+## May 1st, 2025
+Released `EasyCrawl-1.21.5a`
+- Crawling will not activate if the player is holding space
+- Fixed fall-through, so entities can't stand on the shulker
+- When the player is still, shulkers shrink to decrease footprint
+- Improve fall-through system to use on_ground predicate
+- Remove fall_through_immune, as it's no longer necesssary
+
 ## March 26th, 2025
 Released `EasyCrawl-1.21.5`
 - Updated naming, syntax, pack format, etc. to 1.21.5

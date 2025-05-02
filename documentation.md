@@ -289,28 +289,7 @@ EasyCrawl has six:
 
 > Note: the `is_sneaking` predicate flag is not identical to the `minecraft.custom:minecraft.sneak_time` objective. The scoreboard objective will detect pressing SHIFT while swimming underwater -- the `is_sneaking` predicate flag won't.
 
-`has_passenger.json` and `has_vehicle.json` are self-explanatory. One note though:
-```
-{
-  "condition": "minecraft:entity_properties",
-  "entity": "this",
-  "predicate": {
-    "passenger": {}
-  }
-}
-```
-is probably more performant than
-```
-{
-  "condition": "minecraft:entity_properties",
-  "entity": "this",
-  "predicate": {
-    "passenger": {
-      "type": "minecraft:shulker"
-    }
-  }
-}
-```
+`has_passenger.json` and `has_vehicle.json` are self-explanatory.
 
 `is_moving.json` is used to
 - stop displaying the angle settings HUD
