@@ -311,7 +311,9 @@ is probably more performant than
 }
 ```
 
-`is_moving.json` is used to stop displaying the angle settings HUD
+`is_moving.json` is used to
+- stop displaying the angle settings HUD
+- minimize shulker footprint when still
 
 `standing_on.json` is used to determine if an entity is standing on a shulker
 
