@@ -2,6 +2,9 @@
 # Relevant Changes
 This file logs all changes to Minecraft that affect EasyCrawl
 
+# 24w36a (4th snapshot for 1.21.2)
+- Input predicate. Useful to detecting if the player is holding space
+
 ## 1.21.1
 - No changes
 

@@ -277,6 +277,7 @@ EasyCrawl has six:
 `can_start_crawling.json`
 - Player must satisfy score `ezcrawl.crawling` `<` `0`
 - Player must satisfy nbt `OnGround:1b`
+- Player must not be holding jump
 - Player must satisfy score `toggleCrawl` `=` `1`
 - Player must satisfy gamemode non-spectator
 
