@@ -24,7 +24,7 @@ execute as @e[type=shulker,tag=ezcrawl.shulker,predicate=!ezcrawl:has_vehicle] r
 
 
 # If there is an entity standing on the shulker, have it fall through
-execute as @e[type=shulker,tag=ezcrawl.shulker] at @s positioned ~-0.96875 ~0.03125 ~-0.96875 as @e[dx=0,tag=!ezcrawl.crawl_entity,tag=!ezcrawl.fall_through_immune] positioned ~0.9375 ~-0.9375 ~0.9375 if entity @s[dx=0,predicate=ezcrawl:standing_on] at @s run tp @s ~ ~-0.0625 ~
+execute as @e[type=shulker,tag=ezcrawl.shulker] at @s positioned ~-0.96875 ~0.03125 ~-0.96875 as @e[dx=0,tag=!ezcrawl.crawl_entity] positioned ~0.9375 ~-0.9375 ~0.9375 if entity @s[dx=0,predicate=ezcrawl:standing_on] at @s run tp @s ~ ~-0.0625 ~
 
 
 # Display info pages
